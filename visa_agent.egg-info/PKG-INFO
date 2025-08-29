@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: visa-agent
+Version: 0.1.0
+Summary: AI-powered Visa Application Assistant built with LangGraph
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: python-dotenv==1.1.1
+Requires-Dist: langgraph==0.6.5
+Requires-Dist: langchain-anthropic==0.3.18
+Requires-Dist: langchain==0.3.27
+Requires-Dist: langchain-core>=0.3.27
+Requires-Dist: langchain-tavily==0.2.11
+
+# Visa Agent
+
+AI-powered Visa Application Assistant built with LangGraph.
+
+## Installation
+
+```bash
+pip install -e .
+```
+
+## Usage
+
+```bash
+cd visa_agent
+python main.py
+```
+
+## Project Structure
+
+```
+visa_agent/
+├── main.py              # Entry point
+├── state.py             # State definition
+├── pyproject.toml       # Project configuration
+├── nodes/               # Individual node functions
+│   ├── intent_analyzer.py
+│   ├── greetings.py
+│   ├── general_enquiry.py
+│   └── visa_application.py
+├── graph/               # Graph construction
+│   └── builder.py
+├── config/              # Configuration
+│   └── settings.py
+└── utils/               # Utilities
+    └── prompts.py
+```

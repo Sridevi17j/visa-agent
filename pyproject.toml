@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visa-agent"
+version = "0.1.0"
+description = "AI-powered Visa Application Assistant built with LangGraph"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "python-dotenv==1.1.1",
+    "langgraph==0.6.5", 
+    "langchain-anthropic==0.3.18",
+    "langchain==0.3.27",
+    "langchain-core>=0.3.27",
+    "langchain-tavily==0.2.11",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]

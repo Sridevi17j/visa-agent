@@ -16,7 +16,12 @@ class State(TypedDict):
     insurance_info: Annotated[list[dict[str, Any]], add]       # Travel insurance details
     visa_details: Annotated[list[dict[str, Any]], add]         # Previous visa applications, refusals, visa_type
     
+    # Initial basic info collection
+    initial_info: Optional[dict[str, Any]]                          # {"country": "thailand", "travelers": 2, "visa_type": "tourist_single_entry"}
+    
     # Collection tracking fields
     collection_in_progress: Optional[bool]
     incomplete_session_id: Optional[str]
     missing_fields: Optional[list[str]]
+    awaiting_user_response: Optional[bool]                     # True when waiting for user to provide missing info
+    extraction_retry_count: Optional[int]                      # Counter to prevent infinite retry loops

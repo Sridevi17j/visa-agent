@@ -1,10 +1,13 @@
 from langchain_core.messages import SystemMessage
+from pydantic import BaseModel, Field
+from typing import Literal
 
 system_prompt = SystemMessage(content="""
     You are a classification assistant. Analyze the user message and determine if it's:
     1. "greetings" - Hi, Hello or Greetings - Just a greeting message,
     2. "general_enquiry" - Questions about visa information, requirements, processing times.
     3. "visa_application" - Ready to start actual visa application process, if user says like i want to apply for visa or help me apply, or can i apply for visa
+    4. "document_submission" - Providing file paths, uploading documents, submitting passports/bookings
     
     Examples:
     Greetings:
@@ -27,5 +30,25 @@ system_prompt = SystemMessage(content="""
     - "Start my visa application for Singapore"
     - "Help me apply for tourist visa"
     
-    Respond with only: greetings OR general_enquiry OR visa_application
+    Document Submission:
+    - "C:\\passport.jpg"
+    - "Here's my passport: /Documents/passport1.jpg"
+    - "My hotel booking: D:\\booking.pdf"
+    - "Uploading documents at C:\\Files\\passport.png"
+    - "C:\\Users\\dev\\test_projects\\veazy\\DB_DETAILS\\passport.jpg"
+    
+    You must classify into exactly one of these categories:
+    - greetings
+    - general_enquiry 
+    - visa_application
+    - document_submission
     """)
+
+class IntentClassification(BaseModel):
+    """
+    Represents user intent classification for visa agent routing.
+    """
+    user_intent: Literal["greetings", "general_enquiry", "visa_application", "document_submission"] = Field(
+        ..., description="The classified intent of the user message"
+    )
+    confidence: float = Field(..., description="Confidence score between 0.0 and 1.0")

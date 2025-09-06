@@ -1,0 +1,350 @@
+{
+  "visa_type": "vietnam_evisa",
+  "applicable_countries": "All countries and territories worldwide (as of August 15, 2023 - Resolution No. 127/NQ-CP)",
+  "max_trip_days": 90,
+  "official_websites": [
+    "https://evisa.gov.vn",
+    "https://thithucdientu.gov.vn"
+  ],
+  "overview": {
+    "description": "Vietnam E-visa is an electronic visa issued by Vietnamese Immigration Department via online system for foreigners to enter Vietnam",
+    "validity": "Maximum 90 days from entry date specified in application",
+    "duration_of_stay": "30 days maximum per entry",
+    "entry_types": ["single_entry", "multiple_entry"],
+    "purposes": ["tourism", "business", "transit"],
+    "processing_time": "3-7 working days (normal conditions)",
+    "biometrics_required": false,
+    "application_mode": "Online only",
+    "cost": {
+      "single_entry": "$25 USD",
+      "multiple_entry": "$50 USD",
+      "payment_methods": ["credit_card", "debit_card"],
+      "note": "Fee is non-refundable if application is refused"
+    }
+  },
+  "eligibility_requirements": {
+    "passport_validity": "At least 6 months from intended entry date",
+    "passport_pages": "At least 2 blank pages required",
+    "restrictions": [
+      "Cannot apply while already in Vietnam",
+      "Must not fall under Article 21 suspension cases of Vietnam Immigration Law",
+      "Cannot have violated Vietnamese laws previously"
+    ]
+  },
+  "required_documents": {
+    "passport_copy": {
+      "description": "Full passport data page scan including photo, personal information, and ICAO lines",
+      "format": "JPG/JPEG",
+      "quality": "Clear, high-resolution, full page visible"
+    },
+    "portrait_photo": {
+      "size": "4cm x 6cm (or 2x2 inches)",
+      "format": "JPG/JPEG",
+      "max_file_size": "2MB",
+      "background": "Plain white",
+      "requirements": [
+        "Taken within last 6 months",
+        "Face straight, looking at camera",
+        "No glasses (unless medical necessity)",
+        "No hat or head covering (except religious)",
+        "Neutral expression, mouth closed",
+        "Clear facial features visible",
+        "No shadows or glare",
+        "Face occupies 70-80% of photo"
+      ]
+    },
+    "travel_information": [
+      "Intended entry date",
+      "Intended exit date", 
+      "Port of entry (from approved list)",
+      "Purpose of visit",
+      "Temporary address in Vietnam (hotel/accommodation)"
+    ],
+    "personal_information": [
+      "Full name (exactly as in passport ICAO line)",
+      "Date of birth",
+      "Nationality",
+      "Passport number and expiry date",
+      "Previous Vietnam entries (if any)"
+    ]
+  },
+  "entry_ports": {
+    "total_count": 42,
+    "airports": [
+      "Noi Bai International Airport (Hanoi) - HAN",
+      "Tan Son Nhat International Airport (Ho Chi Minh City) - SGN",
+      "Da Nang International Airport (Da Nang) - DAD",
+      "Cam Ranh International Airport (Nha Trang) - CXR",
+      "Phu Quoc International Airport (Phu Quoc) - PQC",
+      "Can Tho International Airport (Can Tho) - VCA",
+      "Phu Bai International Airport (Hue) - HUI",
+      "Cat Bi International Airport (Hai Phong) - HPH"
+    ],
+    "land_borders": [
+      "Mong Cai (border with China)",
+      "Huu Nghi/Friendship Pass (border with China)",
+      "Lao Cai (border with China)",
+      "Cau Treo (border with Laos)",
+      "Cha Lo (border with Laos)",
+      "Bo Y (border with Laos)"
+    ],
+    "seaports": [
+      "Ho Chi Minh Seaport",
+      "Hai Phong Seaport",
+      "Da Nang Seaport",
+      "Nha Trang Seaport"
+    ],
+    "flexibility_note": "Current e-visa format does not specify entry port, allowing flexibility to change entry point"
+  },
+  "application_process": {
+    "steps": [
+      "1. Visit official website: evisa.gov.vn",
+      "2. Complete online application form",
+      "3. Upload required documents (passport page + portrait photo)",
+      "4. Pay visa fee online",
+      "5. Submit application and note registration code",
+      "6. Check status using registration code, email, and DOB",
+      "7. Download approved e-visa",
+      "8. Print e-visa for travel"
+    ],
+    "important_notes": [
+      "No automatic email notification - must check status manually",
+      "Registration code is crucial for status checking",
+      "Applications not processed during weekends and Vietnamese holidays",
+      "Tet holiday processing suspension: January 25 - February 2, 2025"
+    ]
+  },
+  "common_mistakes": {
+    "photo_errors": [
+      "Poor quality or blurry images",
+      "Wrong background color (not white)",
+      "Wearing glasses",
+      "Incorrect photo size or format",
+      "Uploading passport photo instead of portrait",
+      "Cropping image from passport page"
+    ],
+    "information_errors": [
+      "Incorrect name spelling or order",
+      "Wrong passport number or dates",
+      "Incorrect date format (use DD/MM/YYYY)",
+      "Mismatched information between form and passport",
+      "Using old/expired passport details"
+    ],
+    "application_errors": [
+      "Not understanding e-visa validity period",
+      "Choosing wrong entry purpose",
+      "Applying while already in Vietnam",
+      "Not checking application status",
+      "Forgetting to save registration code"
+    ]
+  },
+  "processing_timeline": {
+    "normal": "3-7 working days",
+    "factors_affecting_processing": [
+      "High application volume",
+      "Vietnamese public holidays",
+      "Incomplete or incorrect information",
+      "Poor quality documents"
+    ],
+    "recommendations": [
+      "Apply 10-14 days before travel",
+      "Avoid applying during holiday periods",
+      "Double-check all information before submission"
+    ]
+  },
+  "validity_and_usage": {
+    "validity_period": "90 days maximum from intended entry date",
+    "important_notes": [
+      "Validity starts from date specified in application, not arrival date",
+      "Can enter Vietnam on or after specified entry date",
+      "Must exit before e-visa expires",
+      "Cannot be extended while in Vietnam",
+      "Must apply for new visa if extension needed"
+    ],
+    "multiple_entry_benefits": [
+      "Can enter/exit multiple times within validity period",
+      "No waiting period between entries",
+      "Same 90-day maximum stay period"
+    ]
+  },
+  "special_cases": {
+    "children": [
+      "Each child needs separate e-visa if they have own passport",
+      "Include children in parent's application only if sharing passport",
+      "Same photo requirements apply to children",
+      "Special considerations for infant photos (no other people visible)"
+    ],
+    "visa_exempt_countries": {
+      "45_day_exemption": [
+        "Germany", "France", "Italy", "Spain", "United Kingdom", "Russia", 
+        "Japan", "South Korea", "Denmark", "Sweden", "Norway", "Finland",
+        "Luxembourg", "Poland", "Slovenia", "Belgium", "Romania", "Switzerland",
+        "Croatia", "Netherlands", "Bulgaria", "Slovakia", "Hungary", "Czech Republic"
+      ],
+      "note": "Citizens of these countries can enter visa-free for tourism for 45 days"
+    },
+    "phu_quoc_exemption": "30-day visa exemption for Phu Quoc island entry (all nationalities)"
+  },
+  "troubleshooting": {
+    "application_rejected": [
+      "Review rejection reason if provided",
+      "Correct errors and reapply with new application",
+      "Cannot modify submitted application",
+      "Fee is non-refundable for rejected applications"
+    ],
+    "incorrect_information_on_issued_visa": [
+      "Must apply for new e-visa immediately",
+      "Cannot travel with incorrect information",
+      "May face boarding denial at departure airport",
+      "Contact visa service agency for assistance"
+    ],
+    "status_checking": [
+      "Use registration code + email + date of birth",
+      "No automatic email notifications sent",
+      "Check status regularly on official website",
+      "Contact support only for technical issues"
+    ]
+  },
+  "contact_information": {
+    "official_support": [
+      "Email: foreigners@xuatnhapcanh.gov.vn (service support)",
+      "Email: technical_support@immigration.gov.vn (technical support)",
+      "Hanoi hotline: 024 3826 4026",
+      "Ho Chi Minh hotline: 028 3920 0365"
+    ]
+  },
+  "recent_updates": {
+    "2025_changes": [
+      "New website domains: evisa.gov.vn and thithucdientu.gov.vn",
+      "All countries now eligible for e-visa",
+      "45-day visa exemption expanded to 24 countries",
+      "No 30-day gap required between visa-free entries",
+      "Entry port no longer specified on e-visa document"
+    ]
+  },
+  "faqs": {
+    "can_i_change_entry_date": "No, cannot change after submission. Validity starts from specified entry date.",
+    "can_i_enter_before_entry_date": "No, cannot enter before the specified entry date in application.",
+    "can_i_change_entry_port": "Yes, current e-visa format allows flexibility in entry port selection.",
+    "what_if_i_overstay": "Fines and penalties apply. May affect future visa applications.",
+    "can_i_work_on_evisa": "No, e-visa is only for tourism and business visits, not employment.",
+    "emergency_processing": "Available through authorized agencies for urgent cases (additional fees apply)"
+  },
+  "document_verification": {
+    "passport_bio_page": {
+      "format_requirements": ["Soft copy", "JPG/JPEG format"],
+      "validity_check": "At least 6 months from date of return",
+      "quality_standards": ["Sharp copy", "No information covered", "Correct orientation"],
+      "ai_cleanup": ["Remove fingers from image if present", "Correct orientation"]
+    },
+    "photograph": {
+      "specifications": {
+        "size": "4x6 cm",
+        "format": "JPG/JPEG",
+        "file_size": "Maximum 2MB",
+        "background": "White",
+        "clothing": "Formal",
+        "restrictions": ["No hat", "No glasses", "Straight face"]
+      },
+      "ai_cleanup": {
+        "aspect_ratio": "1:1.5",
+        "face_coverage": "70% of photo",
+        "enhancement": "Studio-quality appearance"
+      }
+    }
+  },
+  "application_form_fields": {
+    "personal_information": {
+      "surname": {"source": "passport_bio_page", "required": true},
+      "given_name": {"source": "passport_bio_page", "required": true},
+      "date_of_birth": {"source": "passport_bio_page", "required": true},
+      "sex": {"source": "passport_bio_page", "required": true},
+      "nationality": {"source": "passport_bio_page", "required": true},
+      "place_of_birth": {"source": "passport_bio_page", "required": true}
+    },
+    "passport_information": {
+      "passport_number": {"source": "passport_bio_page", "required": true},
+      "issuing_authority": {"source": "passport_bio_page", "required": true},
+      "type": {"source": "passport_bio_page", "required": true},
+      "date_of_issue": {"source": "passport_bio_page", "required": true},
+      "expiry_date": {"source": "passport_bio_page", "required": true}
+    },
+    "visa_information": {
+      "number_of_entries": {"source": "visa_type_selection", "required": true},
+      "visa_valid_from": {"source": "flight_tickets_or_user_input", "required": true},
+      "visa_valid_to": {"source": "flight_tickets_or_user_input", "required": true}
+    },
+    "contact_information": {
+      "permanent_address": {"source": "passport_back_page_or_user_input", "required": true},
+      "contact_address": {"source": "passport_back_page_or_user_input", "required": true},
+      "telephone": {"source": "account_information", "required": true}
+    },
+    "emergency_contact": {
+      "full_name": {"source": "user_input", "required": true},
+      "address": {"source": "user_input", "required": true},
+      "telephone": {"source": "user_input", "required": true},
+      "relationship": {"source": "user_input", "required": true}
+    },
+    "occupation": {
+      "occupation_type": {
+        "source": "user_input",
+        "options": ["Businessman", "Employee", "Official", "Others", "Retired", "Student", "Unemployed"],
+        "required": true
+      },
+      "company_details": {"source": "user_input", "required": true},
+      "position": {"source": "user_input", "required": true},
+      "company_address": {"source": "user_input", "required": true},
+      "company_phone": {"source": "user_input", "required": true}
+    },
+    "trip_information": {
+      "purpose_of_entry": {
+        "source": "visa_type_selection",
+        "options": ["Tourist", "Visiting Relatives", "Working", "Business", "Other"],
+        "required": true
+      },
+      "intended_entry_date": {"source": "flight_tickets_or_user_input", "required": true},
+      "length_of_stay": {"source": "flight_tickets_or_user_input", "required": true},
+      "vietnam_address": {"source": "hotel_reservation_or_user_input", "required": true},
+      "province_city": {"source": "hotel_reservation_or_user_input", "required": true},
+      "entry_border_gate": {"source": "flight_tickets_or_user_input", "required": true},
+      "exit_border_gate": {"source": "flight_tickets_or_user_input", "required": true}
+    },
+    "expenses_insurance": {
+      "intended_expenses_usd": {"source": "pending", "required": false},
+      "insurance_purchased": {"source": "pending", "required": false},
+      "expense_coverage": {
+        "source": "user_input",
+        "options": ["Personal", "Company"],
+        "required": true
+      }
+    }
+  },
+  "assumed_defaults": {
+    "description": "Default answers for common questions to improve user experience. Users can modify during form review.",
+    "questions": {
+      "multiple_passports_used": "No",
+      "multiple_nationalities": "No",
+      "vietnamese_law_violations": "No",
+      "other_valid_passports": "No",
+      "agency_contact_in_vietnam": "No",
+      "visited_vietnam_last_year": "No",
+      "relatives_in_vietnam": "No"
+    }
+  },
+  "ai_workflow_steps": [
+    "Confirm number of travelers and their reference names",
+    "Inform user of required documents (passport bio page + photo)",
+    "Get user confirmation to start application process",
+    "Open virtual browser to Vietnam eVisa official website",
+    "Request document uploads and verify legibility",
+    "Clean up documents using AI enhancement",
+    "Extract personal information from passport",
+    "Fill and verify Personal Information section",
+    "Extract and fill Passport Information section",
+    "Handle Requested Visa Information section",
+    "Fill number of entries based on visa type",
+    "Request travel dates or flight tickets",
+    "Process travel information and dates",
+    "Complete remaining form sections with user input"
+  ]
+}

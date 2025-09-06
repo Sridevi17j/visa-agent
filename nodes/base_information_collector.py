@@ -1,16 +1,14 @@
 from state import State
 from config.settings import llm
-from config.visa_types import COMBINED_VISA_TYPES
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 from pydantic import BaseModel, Field
 from typing import Optional
 
 class VisaInfo(BaseModel):
     country: Optional[str] = Field(None, description="Country name (capitalized)")
-    travelers: Optional[int] = Field(None, description="Number of travelers/people")
-    visa_type: Optional[str] = Field(None, description="Visa type from the provided options")
+    purpose_of_travel: Optional[str] = Field(None, description="Purpose of travel (e.g., tourism, business, work, study, transit)")
 
-def visa_application_collector(state: State) -> dict:
+def base_information_collector(state: State) -> dict:
     current_initial_info = state.get("initial_info", {})
     
     # Get the latest USER message (filter by message type)
@@ -47,8 +45,7 @@ def visa_application_collector(state: State) -> dict:
     
     STRICT EXTRACTION RULES - Only extract if EXPLICITLY mentioned:
     - country: Only if a specific country name is mentioned
-    - travelers: Only if a specific number is mentioned (e.g., "2 people", "3 travelers")  
-    - visa_type: Only if user explicitly mentions one of: {', '.join(COMBINED_VISA_TYPES)}
+    - purpose_of_travel: Only if user explicitly mentions purpose (tourism, business, work, study, transit, etc.)
     
     DO NOT assume or guess. Set fields to null if not explicitly mentioned.
     """
@@ -62,10 +59,8 @@ def visa_application_collector(state: State) -> dict:
         extracted_info = current_initial_info.copy()
         if extracted_data.country:
             extracted_info["country"] = extracted_data.country
-        if extracted_data.travelers:
-            extracted_info["travelers"] = extracted_data.travelers
-        if extracted_data.visa_type:
-            extracted_info["visa_type"] = extracted_data.visa_type
+        if extracted_data.purpose_of_travel:
+            extracted_info["purpose_of_travel"] = extracted_data.purpose_of_travel
         
         # Reset retry counter on successful extraction
         return_data = {"extraction_retry_count": 0}
@@ -85,7 +80,7 @@ def visa_application_collector(state: State) -> dict:
         else:
             # First failure, ask user to retry with all information
             return {
-                "messages": [AIMessage(content="Sorry, I had an issue. Which country do you want to visit, how many travelers, and what type of visa do you need?")],
+                "messages": [AIMessage(content="Sorry, I had an issue. Which country do you want to visit and what is your purpose of travel?")],
                 "extraction_retry_count": retry_count + 1,
                 "initial_info": {},  # Reset for fresh start
                 "awaiting_user_response": True
@@ -100,15 +95,13 @@ def visa_application_collector(state: State) -> dict:
     missing_fields = []
     if not extracted_info.get("country"):
         missing_fields.append("country")
-    if not extracted_info.get("travelers"):
-        missing_fields.append("travelers") 
-    if not extracted_info.get("visa_type"):
-        missing_fields.append("visa_type")
+    if not extracted_info.get("purpose_of_travel"):
+        missing_fields.append("purpose_of_travel")
     
     # If all information is collected, proceed to next node
     if not missing_fields:
         result = {
-            "messages": [AIMessage(content=f"Perfect! I have all the required information:\n- Country: {extracted_info['country']}\n- Travelers: {extracted_info['travelers']}\n- Visa Type: {extracted_info['visa_type']}\n\nLet me proceed to collect detailed information.")],
+            "messages": [AIMessage(content=f"Perfect! I have all the required information:\n- Country: {extracted_info['country']}\n- Purpose of Travel: {extracted_info['purpose_of_travel']}\n\nLet me proceed to collect detailed information.")],
             "initial_info": extracted_info,
             "awaiting_user_response": False,
             "next": "detailed_collector"
@@ -120,10 +113,8 @@ def visa_application_collector(state: State) -> dict:
     question_parts = []
     if "country" in missing_fields:
         question_parts.append("Which country are you visiting?")
-    if "travelers" in missing_fields:
-        question_parts.append("How many travelers will be applying?")
-    if "visa_type" in missing_fields:
-        question_parts.append(f"What type of visa do you need? Options: {', '.join(COMBINED_VISA_TYPES)}")
+    if "purpose_of_travel" in missing_fields:
+        question_parts.append("What is your purpose of travel? (e.g., tourism, business, work, study, transit)")
     
     question = "I need a few more details:\n\n" + "\n".join([f"{i+1}. {q}" for i, q in enumerate(question_parts)])
     question += "\n\nPlease provide all the missing information in your response."
@@ -135,4 +126,3 @@ def visa_application_collector(state: State) -> dict:
     }
     result.update(return_data)  # Include retry counter reset
     return result
-

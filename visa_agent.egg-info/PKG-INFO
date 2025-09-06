@@ -10,6 +10,7 @@ Requires-Dist: langchain-anthropic==0.3.18
 Requires-Dist: langchain==0.3.27
 Requires-Dist: langchain-core>=0.3.27
 Requires-Dist: langchain-tavily==0.2.11
+Requires-Dist: openai
 
 # Visa Agent
 

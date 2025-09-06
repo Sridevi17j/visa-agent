@@ -8,7 +8,7 @@ def collection_resume(state: State) -> dict:
     if not session_id:
         return {
             "messages": "No incomplete application found. Let's start fresh!",
-            "next": "visa_application_collector"
+            "next": "base_information_collector"
         }
     
     missing_fields = state.get("missing_fields", [])
@@ -44,7 +44,7 @@ def handle_resume_decision(state: State) -> dict:
                 updates = {
                     "collection_in_progress": True,
                     "missing_fields": incomplete_data.get("missing_fields", []),
-                    "next": "visa_application_collector"
+                    "next": "base_information_collector"
                 }
                 
                 for key, value in collected_data.items():
@@ -58,7 +58,7 @@ def handle_resume_decision(state: State) -> dict:
         return {
             "messages": "Let's continue with your visa application.",
             "collection_in_progress": True,
-            "next": "visa_application_collector"
+            "next": "base_information_collector"
         }
     
     else:
@@ -70,5 +70,5 @@ def handle_resume_decision(state: State) -> dict:
             "collection_in_progress": False,
             "incomplete_session_id": None,
             "missing_fields": None,
-            "next": "visa_application_collector"
+            "next": "base_information_collector"
         }

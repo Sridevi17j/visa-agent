@@ -5,8 +5,8 @@
 ### Complete Application Flow
 1. **User Input** → Intent Analyzer
 2. **Intent Analyzer** → Routes to: greetings, general_enquiry, or visa_application
-3. **Visa Application** → Always routes to visa_application_collector
-4. **Visa Application Collector** → Iteratively collects basic info (country, travelers, visa_type)
+3. **Visa Application** → Always routes to base_information_collector
+4. **Base Information Collector** → Iteratively collects basic info (country, purpose_of_travel)
 5. **Complete Collection** → Routes to detailed_collector (test node)
 
 ### State Management Rules
@@ -28,8 +28,7 @@
 # ✅ USE: Pydantic structured output
 class VisaInfo(BaseModel):
     country: Optional[str] = Field(None, description="Country name")
-    travelers: Optional[int] = Field(None, description="Number of travelers")
-    visa_type: Optional[str] = Field(None, description="Visa type")
+    purpose_of_travel: Optional[str] = Field(None, description="Purpose of travel")
 
 parser = PydanticOutputParser(pydantic_object=VisaInfo)
 result = llm.invoke([HumanMessage(content=prompt)])
@@ -40,16 +39,16 @@ extracted_data = parser.parse(result.content)  # No JSON parsing needed
 
 ### Error Handling with Retry Logic
 - **Max 1 retry** using `extraction_retry_count` state field
-- **First failure**: "Sorry, I had an issue. Which country do you want to visit, how many travelers, and what type of visa do you need?"
+- **First failure**: "Sorry, I had an issue. Which country do you want to visit and what is your purpose of travel?"
 - **Second failure**: "I'm having difficulty processing your request. Please try again later."
 - **Reset state**: `initial_info: {}` on retry for fresh start
 - **Never hardcode**: No fallback country lists (Thailand, Vietnam, etc.)
 
 ### Minimizing User Interactions
 - **Batch questions**: Ask for all missing info in one message
-- **Smart extraction**: "I want to apply" = 1 traveler automatically
-- **Iterative flow**: Keep asking until all 3 fields complete
-- **No step-by-step**: Avoid "First tell me country, then travelers..."
+- **Smart extraction**: Extract country and purpose from natural language
+- **Iterative flow**: Keep asking until all 2 fields complete
+- **No step-by-step**: Avoid "First tell me country, then purpose..."
 
 ## Code Style Guidelines
 
@@ -87,7 +86,7 @@ user_message = state.latest_message().content  # No such method
 ```
 
 ### Graph Routing Logic
-- **awaiting_user_response**: Routes from intent_analyzer → visa_application_collector
+- **awaiting_user_response**: Routes from intent_analyzer → base_information_collector
 - **next field**: Controls conditional edges (detailed_collector, continue_collection, etc.)
 - **State updates**: Always return dictionary updates, never modify state directly
 
@@ -106,12 +105,12 @@ user_message = state.latest_message().content  # No such method
 - **Solution**: Filter messages or use state["messages"][0] for original request
 
 ### Missing Information
-- **Problem**: "I want Thailand visa" doesn't extract travelers=1
-- **Solution**: Better LLM prompting with examples: "I want to apply" = 1 traveler
+- **Problem**: "I want Thailand visa" doesn't extract purpose automatically
+- **Solution**: Better LLM prompting to extract purpose from context
 
 ## State Schema Reference
 ```python
-initial_info: {"country": str, "travelers": int, "visa_type": str}
+initial_info: {"country": str, "purpose_of_travel": str}
 awaiting_user_response: bool  # Routes back to collector
 extraction_retry_count: int  # Prevents infinite retries
 ```

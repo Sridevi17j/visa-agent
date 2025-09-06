@@ -7,9 +7,12 @@ graph/__init__.py
 graph/builder.py
 nodes/__init__.py
 nodes/collection_resume.py
+nodes/detailed_collector.py
+nodes/docs_parser.py
 nodes/general_enquiry.py
 nodes/greetings.py
 nodes/intent_analyzer.py
+nodes/passport_processor.py
 nodes/visa_application.py
 nodes/visa_application_collector.py
 utils/__init__.py

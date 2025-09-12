@@ -37,10 +37,22 @@ def docs_parser(state: State) -> dict:
     
     # Extract file paths from user message
     potential_paths = []
+    non_file_slashes = []  # Track slash-containing words that aren't files
     words = user_message.split()
+    
     for word in words:
-        if ('.' in word and any(ext in word.lower() for ext in ['.jpg', '.jpeg', '.png', '.pdf'])) or ('\\' in word or '/' in word):
+        # Only consider as file path if it has proper file extensions
+        if '.' in word and any(ext in word.lower() for ext in ['.jpg', '.jpeg', '.png', '.pdf']):
             potential_paths.append(word.strip('",\''))
+        # Track slash-containing words without file extensions (likely dates or other data)
+        elif ('\\' in word or '/' in word) and word.strip('",\''):
+            non_file_slashes.append(word.strip('",\''))
+    
+    # Handle case where user provided slashes but no actual file paths
+    if not potential_paths and non_file_slashes:
+        return {
+            "messages": [AIMessage(content=f"I see you mentioned '{', '.join(non_file_slashes)}' but these don't appear to be file paths. Please provide the full file paths to your documents with extensions like .jpg, .png, or .pdf (e.g., 'C:\\Documents\\passport.jpg').")]
+        }
     
     if not potential_paths:
         return {

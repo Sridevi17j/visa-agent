@@ -76,7 +76,7 @@ def passport_processor(state: State) -> dict:
         }
     
     processed_passports = []
-    travelers_count = state.get("initial_info", {}).get("travelers", 1)
+    travelers_count = state.get("initial_info", {}).get("number_of_travelers", 1)
     
     for i, file_path in enumerate(potential_paths[:travelers_count]):  # Limit to expected number
         # Verify file exists

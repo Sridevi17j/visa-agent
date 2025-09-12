@@ -1,4 +1,5 @@
 from state import State
+from langchain_core.messages import AIMessage
 import json
 
 def detailed_collector(state: State) -> dict:
@@ -10,10 +11,11 @@ def detailed_collector(state: State) -> dict:
     message = f"""Here's what I collected from the initial information gathering:
 
 **Country**: {initial_info.get('country', 'Not specified')}
-**Travelers**: {initial_info.get('travelers', 'Not specified')}  
-**Visa Type**: {initial_info.get('visa_type', 'Not specified')}
+**Purpose of Travel**: {initial_info.get('purpose_of_travel', 'Not specified')}
+**Number of Travelers**: {initial_info.get('number_of_travelers', 'Not specified')}  
+**Travel Dates**: {initial_info.get('travel_dates', 'Not specified')}
 
-Could you please upload the passport of {initial_info.get('travelers', 1)} traveler(s) and provide hotel booking details if any?
+Could you please upload the passport of {initial_info.get('number_of_travelers', 1)} traveler(s) and provide hotel booking details if any?
 """
     
-    return {"messages": message}
+    return {"messages": [AIMessage(content=message)]}

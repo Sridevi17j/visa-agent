@@ -68,6 +68,14 @@ def general_enquiry(state: State) -> dict:
         
         country = extract_country_from_query(user_message)
         
+        # If no country extracted from query, check if we have ongoing visa application context
+        if not country and state.get("collection_in_progress"):
+            incomplete_info = state.get("incomplete_initial_info", {})
+            context_country = incomplete_info.get("country")
+            if context_country:
+                country = context_country.lower()
+                print(f"Using context country: {country}")
+        
         if not country:
             return {
                 "messages": [AIMessage(content="I'd be happy to help with visa information! Could you please specify which country's visa you're asking about?")]
@@ -98,12 +106,28 @@ Provide a helpful, accurate response. If the context doesn't contain enough info
         response = llm.invoke([HumanMessage(content=prompt)])
         parsed_response = parser.parse(response.content)
         
-        return {
+        result = {
             "messages": [AIMessage(content=parsed_response.answer)]
         }
         
+        # If we came from visa collection flow, preserve context for routing back
+        if state.get("collection_in_progress"):
+            result["collection_in_progress"] = True
+            result["incomplete_initial_info"] = state.get("incomplete_initial_info", {})
+            result["previous_node"] = state.get("previous_node", "base_information_collector")
+        
+        return result
+        
     except Exception as e:
         print(f"Error in general_enquiry: {e}")
-        return {
+        result = {
             "messages": [AIMessage(content="I'm having some technical difficulties right now. Please try your question again, or feel free to contact our support team for assistance.")]
         }
+        
+        # Preserve collection context even in error case
+        if state.get("collection_in_progress"):
+            result["collection_in_progress"] = True
+            result["incomplete_initial_info"] = state.get("incomplete_initial_info", {})
+            result["previous_node"] = state.get("previous_node", "base_information_collector")
+        
+        return result

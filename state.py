@@ -17,7 +17,7 @@ class State(TypedDict):
     visa_details: Annotated[list[dict[str, Any]], add]         # Previous visa applications, refusals, visa_type
     
     # Initial basic info collection
-    initial_info: Optional[dict[str, Any]]                          # {"country": "thailand", "travelers": 2, "visa_type": "tourist_single_entry"}
+    initial_info: Optional[dict[str, Any]]                          # {"country": "thailand", "purpose_of_travel": "tourism", "number_of_travelers": 2, "travel_dates": "24/01/26 to 02/02/26"}
     
     # Collection tracking fields
     collection_in_progress: Optional[bool]

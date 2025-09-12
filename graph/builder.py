@@ -54,6 +54,7 @@ def build_graph():
         lambda state: state.get("next", "__end__"),
         {
             "continue_collection": "base_information_collector",
+            "base_information_collector": "base_information_collector",  # Self-reference for routing from other nodes
             "detailed_collector": "detailed_collector", 
             "intent_analyser": "intent_analyser",
             "proceed_to_next_step": "__end__",
@@ -76,7 +77,8 @@ def build_graph():
         "collection_resume",
         lambda state: state.get("next", "__end__"),
         {
-            "wait_for_resume_decision": "__end__",
+            "handle_resume_decision": "handle_resume_decision",
+            "base_information_collector": "base_information_collector",
             "__end__": END
         }
     )
@@ -86,6 +88,7 @@ def build_graph():
         lambda state: state.get("next", "__end__"),
         {
             "base_information_collector": "base_information_collector",
+            "intent_analyser": "intent_analyser",
             "__end__": END
         }
     )

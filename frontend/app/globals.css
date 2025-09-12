@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.chat-message-user {
+  @apply bg-primary-500 text-white rounded-2xl rounded-br-md text-lg;
+}
+
+.chat-message-assistant {
+  @apply bg-white text-gray-800 rounded-2xl rounded-bl-md shadow-sm text-lg;
+}
+
+.typing-indicator {
+  @apply flex space-x-1;
+}
+
+.typing-dot {
+  @apply w-2 h-2 bg-gray-400 rounded-full animate-bounce;
+  animation-delay: 0ms;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.file-drop-zone {
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-primary-500 transition-colors;
+}
+
+.file-drop-zone.dragover {
+  @apply border-primary-500 bg-primary-50;
+}

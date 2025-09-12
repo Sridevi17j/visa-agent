@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "visa_agent": "./graph/builder.py:build_graph"
+  },
+  "env": ".env"
+}

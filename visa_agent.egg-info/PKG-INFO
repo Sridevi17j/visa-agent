@@ -11,6 +11,8 @@ Requires-Dist: langchain==0.3.27
 Requires-Dist: langchain-core>=0.3.27
 Requires-Dist: langchain-tavily==0.2.11
 Requires-Dist: openai
+Requires-Dist: langgraph-cli[inmem]
+Requires-Dist: langgraph-sdk
 
 # Visa Agent
 

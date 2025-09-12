@@ -1,5 +1,7 @@
 config
+frontend
 graph
 incomplete_applications
+knowledge_base
 nodes
 utils

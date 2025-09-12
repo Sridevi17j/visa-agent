@@ -5,3 +5,5 @@ langchain==0.3.27
 langchain-core>=0.3.27
 langchain-tavily==0.2.11
 openai
+langgraph-cli[inmem]
+langgraph-sdk

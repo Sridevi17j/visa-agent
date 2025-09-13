@@ -9,7 +9,7 @@ from nodes.collection_resume import collection_resume, handle_resume_decision
 from nodes.detailed_collector import detailed_collector
 from nodes.docs_parser import docs_parser
 
-def build_graph():
+def build_graph(checkpointer=None):
     graph = StateGraph(State)
     
     graph.add_node("intent_analyser", intent_analyser)
@@ -93,4 +93,4 @@ def build_graph():
         }
     )
     
-    return graph.compile()
+    return graph.compile(checkpointer=checkpointer)

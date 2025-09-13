@@ -50,20 +50,26 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 p-4 shadow-sm">
+      <div className="bg-white/80 backdrop-blur-sm border-b border-gray-200/50 p-6 shadow-sm">
         <div className="flex items-center justify-between max-w-4xl mx-auto">
-          <div>
-            <h1 className="text-xl font-semibold text-gray-900">Veazy - AI Visa Assistant</h1>
-            <p className="text-sm text-gray-600">
-              Get help with your visa application
-              {threadId && <span className="ml-2 text-xs text-gray-500">Thread: {threadId.slice(0, 8)}</span>}
-            </p>
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-lg">V</span>
+            </div>
+            <div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Veazy
+              </h1>
+              <p className="text-sm text-gray-600 font-medium">
+                AI Visa Assistant
+              </p>
+            </div>
           </div>
           <button
             onClick={resetChat}
-            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-3 text-gray-500 hover:text-gray-700 hover:bg-white/60 rounded-full transition-all duration-200 shadow-sm"
             title="Start new conversation"
           >
             <RefreshCw className="w-5 h-5" />
@@ -75,7 +81,7 @@ export default function ChatInterface() {
       {error && (
         <div className="bg-red-50 border-l-4 border-red-500 p-4 max-w-4xl mx-auto w-full">
           <p className="text-red-700 text-sm">
-            Connection error: {error.message}. Make sure the LangGraph server is running on port 2024.
+            Connection error: {error.message}. Make sure the LangGraph server is running on port 8000.
           </p>
         </div>
       )}
@@ -88,8 +94,18 @@ export default function ChatInterface() {
       )}
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="flex-1 overflow-y-auto p-6">
+        <div className="max-w-4xl mx-auto space-y-6">
+          {displayMessages.length === 0 && !isLoading && (
+            <div className="text-center py-12">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-white font-bold text-xl">V</span>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-700 mb-2">Welcome to Veazy</h3>
+              <p className="text-gray-500">Your AI-powered visa assistant. Ask me anything about visa applications!</p>
+            </div>
+          )}
+          
           {displayMessages.map((message, index) => (
             <ChatMessage key={message.id || index} message={message} />
           ))}
@@ -116,34 +132,34 @@ export default function ChatInterface() {
       )}
 
       {/* Input */}
-      <div className="border-t border-gray-200 bg-white p-4">
+      <div className="border-t border-gray-200/50 bg-white/60 backdrop-blur-sm p-6">
         <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
-          <div className="flex gap-2 items-end">
+          <div className="flex gap-3 items-end">
             <button
               type="button"
               onClick={() => setShowFileUpload(!showFileUpload)}
-              className="p-3 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
+              className="p-3 text-gray-500 hover:text-gray-700 hover:bg-white/80 rounded-xl transition-all duration-200 shadow-sm"
               title="Upload document"
             >
               <Paperclip className="w-5 h-5" />
             </button>
             
-            <div className="flex-1">
+            <div className="flex-1 relative">
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your message..."
+                placeholder="Ask about visa requirements, documents, or application process..."
                 disabled={isLoading}
-                className="w-full p-3 border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                className="w-full p-4 pl-6 pr-4 bg-white border border-gray-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:cursor-not-allowed shadow-sm transition-all duration-200"
               />
             </div>
             
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="p-3 bg-primary-500 text-white rounded-full hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+              className="p-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-200 shadow-lg"
             >
               <Send className="w-5 h-5" />
             </button>

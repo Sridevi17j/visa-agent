@@ -7,3 +7,6 @@ langchain-tavily==0.2.11
 openai
 langgraph-cli[inmem]
 langgraph-sdk
+fastapi
+uvicorn[standard]
+langgraph-checkpoint-postgres

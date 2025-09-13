@@ -18,6 +18,9 @@ dependencies = [
     "openai",
     "langgraph-cli[inmem]",
     "langgraph-sdk",
+    "fastapi",
+    "uvicorn[standard]",
+    "langgraph-checkpoint-postgres",
 ]
 
 [tool.setuptools.packages.find]

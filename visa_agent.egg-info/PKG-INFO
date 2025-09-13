@@ -13,6 +13,9 @@ Requires-Dist: langchain-tavily==0.2.11
 Requires-Dist: openai
 Requires-Dist: langgraph-cli[inmem]
 Requires-Dist: langgraph-sdk
+Requires-Dist: fastapi
+Requires-Dist: uvicorn[standard]
+Requires-Dist: langgraph-checkpoint-postgres
 
 # Visa Agent
 

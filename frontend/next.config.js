@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: '/api/visa/:path*',
-        destination: 'http://localhost:2024/:path*',
+        destination: 'http://localhost:8000/:path*',
       },
     ];
   },

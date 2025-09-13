@@ -12,10 +12,8 @@ load_dotenv()
 class DocumentInfo(BaseModel):
     document_type: str = Field(description="Type of document: passport, hotel_booking, bank_statement, etc.")
     content: dict = Field(description="Extracted information from the document")
-OPENAI_API_KEY="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"
-
-# Initialize OpenAI client
-client = OpenAI(api_key=OPENAI_API_KEY)
+# Initialize OpenAI client  
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def encode_image(image_path: str) -> str:
     """Encode image file to base64 string for OpenAI API"""

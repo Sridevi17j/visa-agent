@@ -1,1 +1,11 @@
 .env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# LangGraph API cache
+.langgraph_api/

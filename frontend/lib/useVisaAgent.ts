@@ -21,7 +21,7 @@ export function useVisaAgent() {
   useEffect(() => {
     const createThread = async () => {
       try {
-        const response = await fetch('http://localhost:8000/threads', {
+        const response = await fetch('https://visa-agent-1.onrender.com/threads', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: '{}'
@@ -51,7 +51,7 @@ export function useVisaAgent() {
     setMessages(prev => [...prev, userMessage]);
 
     try {
-      const response = await fetch(`http://localhost:8000/threads/${threadId}/runs/wait`, {
+      const response = await fetch(`https://visa-agent-1.onrender.com/threads/${threadId}/runs/wait`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -81,7 +81,7 @@ export default function ChatInterface() {
       {error && (
         <div className="bg-red-50 border-l-4 border-red-500 p-4 max-w-4xl mx-auto w-full">
           <p className="text-red-700 text-sm">
-            Connection error: {error.message}. Make sure the LangGraph server is running on port 8000.
+            Connection error: {error.message}. Please check your internet connection.
           </p>
         </div>
       )}

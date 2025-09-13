@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: '/api/visa/:path*',
-        destination: 'http://localhost:8000/:path*',
+        destination: 'https://visa-agent-1.onrender.com/:path*',
       },
     ];
   },

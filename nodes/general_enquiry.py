@@ -92,14 +92,37 @@ def general_enquiry(state: State) -> dict:
         
         parser = PydanticOutputParser(pydantic_object=VisaResponse)
         
-        prompt = f"""You are a visa information specialist. Answer the user's question based ONLY on the provided visa information context.
+        prompt = f"""You are a professional visa assistant. Answer the user's question based ONLY on the provided visa information context.
 
 CONTEXT:
 {context}
 
 USER QUESTION: {user_message}
 
-Provide a helpful, accurate response. If the context doesn't contain enough information to fully answer the question, acknowledge this limitation.
+RESPONSE FORMAT EXAMPLE:
+When someone asks "What are the Vietnam visa requirements?", you should respond like this:
+
+**Documents Required**
+- Valid passport (6+ months validity)
+- Recent passport photos
+- Completed application form
+
+**Pricing**
+- Single entry: $25 USD
+- Multiple entry: $50 USD
+
+**Number of Days Stay**
+- Up to 30 days per entry
+
+**Visa Validity**
+- 90 days from issue date
+
+**Processing Time**
+- 3-5 business days
+
+This is an example - you need to provide customized responses like this for every question. Always structure your answers with clear headings and bullet points. Keep responses crisp, organized, and professional. For specific questions (like entry ports, document details), provide direct, concise answers in the same structured format.
+
+For any question related to visa, you need to answer like a Highly experienced Visa Assistant, with correct and appropriate short details.
 
 {parser.get_format_instructions()}"""
         

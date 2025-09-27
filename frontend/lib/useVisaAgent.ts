@@ -21,14 +21,14 @@ export function useVisaAgent() {
   useEffect(() => {
     const createThread = async () => {
       try {
-        // Local development endpoint
-        const response = await fetch('http://localhost:8000/threads', {
+        // Production endpoint
+        const response = await fetch('https://visa-agent-1.onrender.com/threads', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: '{}'
         });
-        // Production endpoint (commented for local testing)
-        // const response = await fetch('https://visa-agent-1.onrender.com/threads', {
+        // Local development endpoint (commented for production deployment)
+        // const response = await fetch('http://localhost:8000/threads', {
         //   method: 'POST',
         //   headers: { 'Content-Type': 'application/json' },
         //   body: '{}'
@@ -84,7 +84,7 @@ export function useVisaAgent() {
       // }
 
       // STREAMING ENDPOINT
-      const response = await fetch(`http://localhost:8000/threads/${threadId}/runs/stream`, {
+      const response = await fetch(`https://visa-agent-1.onrender.com/threads/${threadId}/runs/stream`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
